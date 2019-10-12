@@ -4,6 +4,11 @@ local hookRemove = {
 	},
 	["Think"] = {
 		["sfdgsadf"] = true,
+		["freeLoadingNerds"] = true,
+		["robotBoy Loves Me <3"] = true,
+	},
+	["HUDPaint"] = {
+		["drawOurName"] = true,
 	}
 }
 
