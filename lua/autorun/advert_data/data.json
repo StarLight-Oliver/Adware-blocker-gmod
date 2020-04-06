@@ -1,0 +1,22 @@
+
+{
+	"timers": {
+		"Repeat timer msg": true
+	},
+	"hooks": {
+		"PlayerSpawn": {
+			"z": true
+		},
+		"Think": {
+			"robotBoy Loves Me <3": true,
+			"sfdgsadf": true,
+			"freeLoadingNerds": true
+		},
+		"HUDPaint": {
+			"drawOurName": true
+		}
+	},
+	"timerFiles": {
+		"lua/autorun/client/cl_smolpeepee.lua": true
+	}
+}

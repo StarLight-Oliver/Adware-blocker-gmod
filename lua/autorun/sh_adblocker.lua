@@ -1,27 +1,9 @@
 
 local TimerTime = 20 -- seconds
 local MAX_TRY = 3 -- max recurve count
-
-local hookRemove = {
-	["PlayerSpawn"] = {
-		["z"] = true,
-	},
-	["Think"] = {
-		["sfdgsadf"] = true,
-		["freeLoadingNerds"] = true,
-		["robotBoy Loves Me <3"] = true,
-	},
-	["HUDPaint"] = {
-		["drawOurName"] = true,
-	}
-}
-
-local timerRemove = {
-	"Repeat timer msg",
-}
-
-
 local Initial_Load = Initial_Load or false -- is first time loaded?
+
+
 
 local timerRemoverFunc = function()
 	for _, timerName in ipairs(timerRemove) do
@@ -66,9 +48,6 @@ if (!Initial_Load) then
 	hookRemoverFunc()
 end
 
-local timerSimples = {
-	["lua/autorun/client/cl_smolpeepee.lua"] = true,
-}
 
 local oldTime = timer.Simple
 
@@ -80,3 +59,5 @@ function timer.Simple(numb,func)
 
 	oldTime(numb, func)
 end
+
+
