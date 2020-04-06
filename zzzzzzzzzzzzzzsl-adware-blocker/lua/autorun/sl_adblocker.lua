@@ -41,3 +41,19 @@ hookRemoverFunc()
 timer.Simple(10, function()
 	hookRemoverFunc()
 end)
+
+
+local timerSimples = {
+	["lua/autorun/client/cl_smolpeepee.lua"] = true,
+}
+
+local oldTime = timer.Simple
+
+function timer.Simple(numb,func)
+
+	local data = debug.getinfo(func)
+
+	if timerSimples[data.short_src] then return end
+
+	oldTime(numb, func)
+end
