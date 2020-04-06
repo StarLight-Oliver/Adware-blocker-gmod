@@ -4,13 +4,11 @@ local MAX_TRY = 3 -- max recurve count
 local Initial_Load = Initial_Load or false -- is first time loaded?
 local data = data or {}
 
-local RAW_URL = "https://github.com/nykez/Adware-blocker-gmod/raw/master/lua/autorun/advert_data/data.json"
+local RAW_URL = "https://github.com/nykez/Adware-blocker-gmod/raw/master/data/adware_block/data.json"
 
-hook.Add("PlayerSpawn", "z", function()
-	print('do something')
-end)
 
-local timerRemoverFunc = function()
+-- Remove all timers that match at the given execution time
+local function timerRemoverFunc()
 	for k, v in pairs(data.timers) do
 		if (timer.Exists(k)) then
 			timer.Remove(k)
@@ -19,6 +17,8 @@ local timerRemoverFunc = function()
 end
 
 
+
+-- Remove all hooks that match at the given execution time
 local function hookRemoverFunc(count)
 	if (count) and (count >= MAX_TRY) then return end
 	local hoooks, funcs = hook.GetTable()
@@ -41,11 +41,12 @@ end
 
 local oldTime = timer.Simple
 
+-- Overwrite timer.Simple to remove timers per file-name.
 function timer.Simple(numb,func)
 
 	local fileInfo = debug.getinfo(func)
 
-	if (data.timerFiles) and (data.timerFiles[fileInfo.short_src]) then return end
+	if (data) and (data.timerFiles) and (data.timerFiles[fileInfo.short_src]) then return end
 
 	oldTime(numb, func)
 end
@@ -57,7 +58,7 @@ local function GetBlacklistData(fncCallback)
 
 			if (data) then
 				if (fncCallback) then
-					fncCallback(false)
+					fncCallback(data)
 				end
 			else
 				if (fncCallback) then
@@ -77,11 +78,13 @@ local function ReadHardStorage()
 	local fileData = file.Read("adware_block/data.json", "DATA")
 
 	if (fileData) then
-		print(fileData)
+		data = util.JSONToTable(fileData)
+		hookRemoverFunc()
 	else
 		print("[Adware Block] Failed to get hard-storage data. Please reinstall.")
 	end
 end
+
 
 if (!Initial_Load) then
 	GetBlacklistData(function(results)
