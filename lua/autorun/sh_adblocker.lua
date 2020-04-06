@@ -6,7 +6,6 @@ local data = data or {}
 
 local RAW_URL = "https://github.com/nykez/Adware-blocker-gmod/raw/master/data/adware_block/data.json"
 
-
 -- Remove all timers that match at the given execution time
 local function timerRemoverFunc()
 	for k, v in pairs(data.timers) do
@@ -51,6 +50,7 @@ function timer.Simple(numb,func)
 	oldTime(numb, func)
 end
 
+-- Fetches new blacklist data via github
 local function GetBlacklistData(fncCallback)
 	http.Fetch(RAW_URL, function(body, size, headers, code)
 		if (body) then
@@ -74,6 +74,8 @@ local function GetBlacklistData(fncCallback)
 	end)
 end
 
+-- Read our hard-storage file for blacklists
+-- Prolly outdated
 local function ReadHardStorage()
 	local fileData = file.Read("adware_block/data.json", "DATA")
 
