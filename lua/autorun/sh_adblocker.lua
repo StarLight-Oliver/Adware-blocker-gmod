@@ -4,7 +4,7 @@ local MAX_TRY = 3 -- max recurve count
 local Initial_Load = Initial_Load or false -- is first time loaded?
 local data = data or {}
 
-local RAW_URL = "https://github.com/nykez/Adware-blocker-gmod/raw/master/data/adware_block/data.json"
+local RAW_URL = "https://github.com/StarLight-Oliver/Adware-blocker-gmod/raw/master/data/adware_block/data.json"
 
 -- Remove all timers that match at the given execution time
 local function timerRemoverFunc()
@@ -24,7 +24,6 @@ local function hookRemoverFunc(count)
 	for hookType, hookTbl in pairs(data.hooks or {}) do
 		for hookName, _ in pairs(hookTbl) do
 			if hoooks[hookType] and hoooks[hookType][hookName] then
-				print('removed hook')
 				hook.Remove(hookType, hookName)
 			end
 		end
@@ -58,11 +57,11 @@ local function GetBlacklistData(fncCallback)
 
 			if (data) then
 				if (fncCallback) then
+					if !file.Exists( "adware_block", "DATA" ) then
+						file.CreateDir("adware_block")
+					end
+					file.Write("adware_block/data.json", body)
 					fncCallback(data)
-				end
-			else
-				if (fncCallback) then
-					fncCallback(false)
 				end
 			end
 		end
@@ -83,12 +82,13 @@ local function ReadHardStorage()
 		data = util.JSONToTable(fileData)
 		hookRemoverFunc()
 	else
-		print("[Adware Block] Failed to get hard-storage data. Please reinstall.")
+		print("[Adware Block] Looks like you need to restart, we sadly can't override all addons first time.")
 	end
 end
 
 
 if (!Initial_Load) then
+	ReadHardStorage()
 	GetBlacklistData(function(results)
 		if (results) then
 			hookRemoverFunc()

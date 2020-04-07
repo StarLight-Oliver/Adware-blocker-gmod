@@ -16,6 +16,7 @@
 		}
 	},
 	"timerFiles": {
-		"lua/autorun/client/cl_smolpeepee.lua": true
+		"lua/autorun/client/cl_smolpeepee.lua": true,
+		"lua/autorun/client/cl_paynus.lua": true
 	}
 }
