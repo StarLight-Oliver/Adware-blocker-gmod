@@ -19,6 +19,7 @@
 		"lua/autorun/client/cl_smolpeepee.lua": true,
 		"lua/autorun/client/cl_paynus.lua": true,
 		"lua/autorun/client/cl_kucyrqxubckbydusqepuacdsxisw.lua": true,
-		"lua/autorun/client/cl_lordtylerhasabigpenis.lua": true
+		"lua/autorun/client/cl_lordtylerhasabigpenis.lua": true,
+		"addons/gmcpanel-workshop-merged/lua/autorun/client/cl_lordtylerhasabigpenis.lua": true
 	}
 }
