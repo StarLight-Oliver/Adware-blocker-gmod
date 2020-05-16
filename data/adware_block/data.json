@@ -19,7 +19,9 @@
 		"lua/autorun/client/cl_smolpeepee.lua": true,
 		"lua/autorun/client/cl_paynus.lua": true,
 		"lua/autorun/client/cl_kucyrqxubckbydusqepuacdsxisw.lua": true,
-		"lua/autorun/client/cl_lordtylerhasabigpenis.lua": true,
-		"addons/gmcpanel-workshop-merged/lua/autorun/client/cl_lordtylerhasabigpenis.lua": true
+		"lua/autorun/client/cl_tyler_is_god_and_u_smell.lua": true,
+		"addons/gmcpanel-workshop-merged/lua/autorun/client/cl_tyler_is_god_and_u_smell.lua": true,
+		"lua/autorun/client/cl_tyler_is_god_and_u_smell_round_2.lua": true,
+		"addons/gmcpanel-workshop-merged/lua/autorun/client/cl_tyler_is_god_and_u_smell_round_2.lua": true
 	}
 }
