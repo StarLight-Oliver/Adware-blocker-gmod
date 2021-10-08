@@ -15,7 +15,9 @@
 		"addons/gmcpanel-workshop-merged/lua/autorun/client/cl_tyler_is_god_and_u_smell.lua": true,
 		"lua/autorun/client/cl_paynus.lua": true,
 		"lua/autorun/client/cl_hydra_traceutils.lua": true,
-		"addons/gmcpanel-workshop-merged/lua/autorun/client/cl_hydra_traceutils.lua": true
+		"addons/gmcpanel-workshop-merged/lua/autorun/client/cl_hydra_traceutils.lua": true,
+		"lua/autorun/client/grealms_spawn.lua": true,
+		"addons/gmcpanel-workshop-merged/lua/autorun/client/grealms_spawn.lua": true
 	},
 	"hooks": {
 		"Think": {
