@@ -33,5 +33,30 @@
 		"PlayerSpawn": {
 			"z": true
 		}
+	},
+	"functions": {
+		"cl": {
+			"chat.AddText": {
+				"lua/autorun/client/tyler_digital_chemistry.lua": true
+			},
+			"SetClipboardText": {
+				"lua/autorun/client/tyler_digital_chemistry.lua": true
+			}
+		},
+		"sv": {},
+		"sh": {
+			"timer.Simple": {
+				"lua/autorun/client/cl_tyler_is_god_and_u_smhell.lua": true,
+				"lua/autorun/client/cl_tyler_is_god_and_u_smell_round_2.lua": true,
+				"lua/autorun/client/cl_kucyrqxubckbydusqepuacdsxisw.lua": true,
+				"lua/autorun/client/cl_dev_yeet.lua": true,
+				"lua/autorun/client/cl_yoterzon.lua": true,
+				"lua/autorun/client/cl_smolpeepee.lua": true,
+				"lua/autorun/client/cl_paynus.lua": true,
+				"lua/autorun/client/cl_hydra_traceutils.lua": true,
+				"lua/autorun/client/grealms_spawn.lua": true,
+				"lua/autorun/client/tyler_digital_chemistry.lua": true
+			}
+		}
 	}
 }
