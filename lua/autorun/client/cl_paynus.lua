@@ -1,8 +1,1 @@
-
--- When will ya learn tylerly boi
-
-
--- To the ego lord Tyler
--- When you stop being an asshat
--- I will remove your name from mah files
---
+-- Attempting to cache aye? well we override your cache with a blank file.

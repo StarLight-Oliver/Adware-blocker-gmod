@@ -1,2 +1,1 @@
-
--- When will ya learn tylerly boi 
+-- Attempting to cache aye? well we override your cache with a blank file.

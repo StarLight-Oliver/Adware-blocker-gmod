@@ -85,7 +85,11 @@ local function ReadHardStorage()
 		return
 	end
 
-	data = util.JSONToTable(fileData)
+	local jsonData = util.JSONToTable(fileData)
+
+	if not jsonData then return end
+	data = jsonData
+
 	hookRemoverFunc()
 end
 
@@ -163,11 +167,12 @@ local InjectAddons = function(noPrints)
 	data.functions = data.functions or {}
 
 	for k, v in SortedPairsByMemberValue( engine.GetAddons(), "title" ) do
-		if not data.addons[v.wsid] then continue end
 
+		local id = tonumber(v.wsid)
+		if not data.addons[id] then continue end
 		local files = FindAddonFiles(v.title)
 
-		local badRealms = data.addons[v.wsid]
+		local badRealms = data.addons[id]
 
 		for realm, badFuncs in pairs(badRealms) do
 			data.functions[realm] = data.functions[realm] or {}
@@ -187,8 +192,6 @@ end
 local OverrideFunctions = function()
 
 	InjectAddons()
-
-
 
 	local functionsToOverride = data.functions
 
