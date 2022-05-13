@@ -57,15 +57,16 @@ end
 local function GetBlacklistData(fncCallback)
 	http.Fetch(RAW_URL, function(body, size, headers, code)
 		if not body then return end
-			data = util.JSONToTable(body)
+		local jsonData = util.JSONToTable(body)
 
-		if not data then return end
-		if not fncCallback then return end
+		if not jsonData then return end
+		data = jsonData
 
 		if not file.Exists( "adware_block", "DATA" ) then
 			file.CreateDir("adware_block")
 		end
 		file.Write("adware_block/data.json", body)
+		if not fncCallback then return end
 		fncCallback(data)
 	end,
 	function(err)
