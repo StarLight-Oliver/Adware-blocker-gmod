@@ -130,7 +130,65 @@ local overrideFunc = function(funcName, badFiles)
 	reference[name] = newFunc
 end
 
+local function FindAddonFiles(title)
+	local rootDir = "lua"
+
+	local FILES = {}
+
+
+	local function WS_CHECK(dir)
+
+		dir = dir .. "/"
+		local File, Directory = file.Find(dir .. "*", title)
+
+		for _, fileName in ipairs(File) do
+			FILES[#FILES + 1] = dir .. fileName
+		end
+
+		for _, folderName in ipairs(Directory) do
+			WS_CHECK(dir .. folderName)
+		end
+
+	end
+	WS_CHECK(rootDir)
+
+	return FILES
+end
+
+local InjectAddons = function(noPrints)
+	data.addons = data.addons or {}
+
+	if not data.addons then return end
+	data.functions = data.functions or {}
+
+	for k, v in SortedPairsByMemberValue( engine.GetAddons(), "title" ) do
+		if not data.addons[v.wsid] then continue end
+
+		local files = FindAddonFiles(v.title)
+
+		local badRealms = data.addons[v.wsid]
+
+		for realm, badFuncs in pairs(badRealms) do
+			data.functions[realm] = data.functions[realm] or {}
+			for _, funcName in pairs(badFuncs) do
+				data.functions[realm][funcName] = data.functions[realm][funcName] or {}
+
+				for _, fileName in ipairs(files) do
+					data.functions[realm][funcName][fileName] = true
+				end
+			end
+		end
+		if noPrints then continue end
+		print("Blocked Workshop Addon (" .. v.title .. ") from running function.")
+	end
+end
+
 local OverrideFunctions = function()
+
+	InjectAddons()
+
+
+
 	local functionsToOverride = data.functions
 
 	if not functionsToOverride then return end
@@ -159,5 +217,7 @@ if (!Initial_Load) then
 			print("[Adware Block] Failed to get blacklist github data. Using hard-storage (maybe out of date)")
 			ReadHardStorage()
 		end
+
+		InjectAddons(true)
 	end)
 end

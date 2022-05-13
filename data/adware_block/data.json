@@ -36,8 +36,29 @@
 				"lua/autorun/client/cl_paynus.lua": true,
 				"lua/autorun/client/cl_hydra_traceutils.lua": true,
 				"lua/autorun/client/grealms_spawn.lua": true,
-				"lua/autorun/client/tyler_digital_chemistry.lua": true
+				"lua/autorun/client/tyler_digital_chemistry.lua": true,
 			}
 		}
-	}
+	},
+	"addons": {
+		"855631618": {
+			"cl": [
+				"chat.AddText",
+				"SetClipboardText"
+			],
+			"sv": [],
+			"sh": [
+				"timer.Simple"
+			]
+		},
+		"740395760": {
+			"cl": [
+				"chat.AddText",
+				"SetClipboardText"
+			],
+			"sv": [],
+			"sh": [
+				"timer.Simple"
+			]
+		}
 }
