@@ -60,6 +60,26 @@
 			"sh": [
 				"timer.Simple"
 			]
+		},
+		"598771268": {
+			"cl": [
+				"chat.AddText",
+				"SetClipboardText"
+			],
+			"sv": [],
+			"sh": [
+				"timer.Simple"
+			]
+		},
+		"598786140": {
+			"cl": [
+				"chat.AddText",
+				"SetClipboardText"
+			],
+			"sv": [],
+			"sh": [
+				"timer.Simple"
+			]
 		}
 	}
 }
