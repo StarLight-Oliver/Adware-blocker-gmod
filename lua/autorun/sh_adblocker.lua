@@ -197,11 +197,11 @@ local OverrideFunctions = function()
 
 	if not functionsToOverride then return end
 
-	for funcName, badFiles in pairs( functionsToOverride[ SERVER and "sv" or "cl" ]) do
+	for funcName, badFiles in pairs( functionsToOverride[ SERVER and "sv" or "cl" ] or {}) do
 		overrideFunc(funcName, badFiles)
 	end
 
-	for funcName, badFiles in pairs( functionsToOverride[ "sh" ]) do
+	for funcName, badFiles in pairs( functionsToOverride[ "sh" ] or {}) do
 		overrideFunc(funcName, badFiles)
 	end
 end
