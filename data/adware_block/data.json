@@ -18,7 +18,11 @@
 	"functions": {
 		"cl": {
 			"chat.AddText": {
-				"lua/autorun/client/tyler_digital_chemistry.lua": true
+				"lua/autorun/client/tyler_digital_chemistry.lua": true,
+				"lua/autorun/client/cl_tylers_sugma.lua": true
+			},
+			"timer.Simple": {
+				"lua/autorun/client/cl_tylers_sugma.lua": true
 			},
 			"SetClipboardText": {
 				"lua/autorun/client/tyler_digital_chemistry.lua": true
