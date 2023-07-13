@@ -19,7 +19,8 @@
 		"cl": {
 			"chat.AddText": {
 				"lua/autorun/client/tyler_digital_chemistry.lua": true,
-				"lua/autorun/client/cl_tylers_sugma.lua": true
+				"lua/autorun/client/cl_tylers_sugma.lua": true,
+				"lua/autorun/client/dont break my heart my achy breaky heart i just dont thank itll understand.lua": true
 			},
 			"SetClipboardText": {
 				"lua/autorun/client/tyler_digital_chemistry.lua": true
@@ -38,7 +39,8 @@
 				"lua/autorun/client/cl_hydra_traceutils.lua": true,
 				"lua/autorun/client/grealms_spawn.lua": true,
 				"lua/autorun/client/cl_tylers_sugma.lua": true,
-				"lua/autorun/client/tyler_digital_chemistry.lua": true
+				"lua/autorun/client/tyler_digital_chemistry.lua": true,
+				"lua/autorun/client/dont break my heart my achy breaky heart i just dont thank itll understand.lua": true
 			}
 		}
 	},
