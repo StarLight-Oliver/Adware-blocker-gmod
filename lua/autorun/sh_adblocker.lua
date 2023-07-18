@@ -212,7 +212,7 @@ if (!Initial_Load) then
 
 	OverrideFunctions()
 
-	timer.Simple(4, function()
+	timer.Simple(0, function()
 		GetBlacklistData(function(results)
 			if (results) then
 				hookRemoverFunc()
@@ -224,17 +224,5 @@ if (!Initial_Load) then
 	
 			InjectAddons(true)
 		end)
-	end)
-	
-	GetBlacklistData(function(results)
-		if (results) then
-			hookRemoverFunc()
-		else
-			-- couldn't get new data, fallback to hard storage.
-			print("[Adware Block] Failed to get blacklist github data. Using hard-storage (maybe out of date)")
-			ReadHardStorage()
-		end
-
-		InjectAddons(true)
 	end)
 end
