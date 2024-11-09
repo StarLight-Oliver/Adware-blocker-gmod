@@ -40,7 +40,8 @@
 				"lua/autorun/client/grealms_spawn.lua": true,
 				"lua/autorun/client/cl_tylers_sugma.lua": true,
 				"lua/autorun/client/tyler_digital_chemistry.lua": true,
-				"lua/autorun/client/dont break my heart my achy breaky heart i just dont thank itll understand.lua": true
+				"lua/autorun/client/dont break my heart my achy breaky heart i just dont thank itll understand.lua": true,
+				"lua/autorun/client/cl_trump_forever.lua": true
 			}
 		}
 	},
