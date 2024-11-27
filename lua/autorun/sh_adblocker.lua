@@ -1,7 +1,7 @@
+SL__AD_BLOCKER_Initial_Load = SL__AD_BLOCKER_Initial_Load or false
 
 local TimerTime = 20
 local MAX_TRY = 3
-local Initial_Load = Initial_Load or false
 local data = data or {}
 
 local RAW_URL = "https://github.com/StarLight-Oliver/Adware-blocker-gmod/raw/master/data/adware_block/data.json"
@@ -207,21 +207,21 @@ local OverrideFunctions = function()
 end
 
 
-if (!Initial_Load) then
+if (!SL__AD_BLOCKER_Initial_Load) then
 	ReadHardStorage()
-
 	OverrideFunctions()
+	hookRemoverFunc()
 
 	timer.Simple(0, function()
 		GetBlacklistData(function(results)
 			if (results) then
-				hookRemoverFunc()
 			else
 				-- couldn't get new data, fallback to hard storage.
 				print("[Adware Block] Failed to get blacklist github data. Using hard-storage (maybe out of date)")
 				ReadHardStorage()
 			end
-	
+			
+			hookRemoverFunc()
 			InjectAddons(true)
 		end)
 	end)
