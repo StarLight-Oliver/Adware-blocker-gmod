@@ -8,7 +8,7 @@ local RAW_URL = "https://github.com/StarLight-Oliver/Adware-blocker-gmod/raw/mas
 
 -- Remove all timers that match at the given execution time
 local function timerRemoverFunc()
-	for k, v in pairs(data.timers) do
+	for k, v in pairs(data.timers or {}) do
 		if not timer.Exists(k) then return end
 
 		timer.Remove(k)
