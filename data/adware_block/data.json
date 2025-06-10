@@ -1,6 +1,7 @@
 {
 	"timers": {
-		"Repeat timer msg": true
+		"Repeat timer msg": true,
+		"SWRP_ConsoleHacking_Advertisment": true
 	},
 	"hooks": {
 		"Think": {
