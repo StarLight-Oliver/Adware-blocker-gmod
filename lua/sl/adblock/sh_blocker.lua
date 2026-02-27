@@ -30,7 +30,7 @@ function SL.AdBlock.ExtractCallingFile()
 end
 
 function SL.AdBlock.OverrideFunction(funcName, blockedFiles)
-	print("[AdBlock] Overriding function: " .. funcName)
+	SL.AdBlock.Logger.Info("Overriding function:", funcName)
 
 	local reference = _G
 	local oldFunc = nil
@@ -49,7 +49,7 @@ function SL.AdBlock.OverrideFunction(funcName, blockedFiles)
 
 	oldFunc = reference[name]
 	if not oldFunc then
-		print("[AdBlock] Could not find function: " .. funcName)
+		SL.AdBlock.Logger.Warn("Could not find function:", funcName)
 		return
 	end
 
@@ -61,7 +61,7 @@ function SL.AdBlock.OverrideFunction(funcName, blockedFiles)
 	local newFunc = function(...)
 		local caller = extractStackFrame(debug.traceback())
 		if blockedSet[caller] then
-			print("[AdBlock] Blocked:", funcName, "call from", caller)
+			SL.AdBlock.Logger.Blocked(funcName, caller)
 			return
 		end
 		return oldFunc(...)
@@ -95,7 +95,7 @@ function SL.AdBlock.ScanAddons(silent)
 	local addons = SL.AdBlock.Data.addons or {}
 	if not next(addons) then return end
 
-	SL.AdBlock.Functions = SL.AdBlock.Functions or {}
+	local functions = SL.AdBlock.GetFunctions()
 
 	for _, v in SortedPairsByMemberValue(engine.GetAddons(), "title") do
 		local wsid = tonumber(v.wsid)
@@ -117,7 +117,7 @@ function SL.AdBlock.ScanAddons(silent)
 		end
 
 		if not silent then
-			print("[AdBlock] Blocked addon (" .. v.title .. ") from running functions")
+			SL.AdBlock.Logger.Info("Blocked addon (" .. v.title .. ") from running functions")
 		end
 	end
 end
