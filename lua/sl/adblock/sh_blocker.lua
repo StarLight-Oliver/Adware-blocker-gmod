@@ -25,8 +25,8 @@ local function extractStackFrame(stackTrace, depthOverride)
 	return frame
 end
 
-function SL.AdBlock.ExtractCallingFile()
-	return extractStackFrame(debug.traceback(), 4)
+function SL.AdBlock.ExtractCallingFile(depthOverride)
+	return extractStackFrame(debug.traceback(), depthOverride)
 end
 
 function SL.AdBlock.OverrideFunction(funcName, blockedFiles)
@@ -53,14 +53,9 @@ function SL.AdBlock.OverrideFunction(funcName, blockedFiles)
 		return
 	end
 
-	local blockedSet = {}
-	for k, v in pairs(blockedFiles or {}) do
-		blockedSet[k] = v
-	end
-
 	local newFunc = function(...)
 		local caller = extractStackFrame(debug.traceback())
-		if blockedSet[caller] then
+		if blockedFiles[caller] then
 			SL.AdBlock.Logger.Blocked(funcName, caller)
 			return
 		end
