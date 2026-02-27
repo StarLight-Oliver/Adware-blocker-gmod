@@ -33,14 +33,14 @@ function SL.AdBlock.LoadFromStorage()
 	local fileData = file.Read(SL.AdBlock.Config.StoragePath, "DATA")
 	if not fileData then
 		SL.AdBlock.Logger.Warn("No stored data found. Restart required.")
-		return false
+		return
 	end
 
 	local jsonData = util.JSONToTable(fileData)
-	if not jsonData then return false end
+	if not jsonData then return end
 
 	SL.AdBlock.Data = jsonData
-	return true
+	return
 end
 
 function SL.AdBlock.GetData()
