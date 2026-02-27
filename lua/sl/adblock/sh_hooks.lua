@@ -2,7 +2,9 @@ SL = SL or {}
 SL.AdBlock = SL.AdBlock or {}
 
 function SL.AdBlock.RemoveTimers()
-	for name, _ in pairs(SL.AdBlock.Timers or {}) do
+	local timers = SL.AdBlock.GetTimers()
+
+	for name, _ in pairs(timers) do
 		if timer.Exists(name) then
 			timer.Remove(name)
 		end
@@ -15,7 +17,7 @@ function SL.AdBlock.RemoveHooks(retryCount)
 	end
 
 	local existingHooks = hook.GetTable()
-	local storedHooks = SL.AdBlock.Data.hooks or {}
+	local storedHooks = SL.AdBlock.GetHooks()
 
 	for hookType, hookTable in pairs(storedHooks) do
 		for hookName, _ in pairs(hookTable) do

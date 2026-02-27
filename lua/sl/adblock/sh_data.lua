@@ -1,5 +1,6 @@
 SL = SL or {}
 SL.AdBlock = SL.AdBlock or {}
+SL.AdBlock.Data = SL.AdBlock.Data or {}
 
 function SL.AdBlock.FetchBlacklist(callback)
 	http.Fetch(SL.AdBlock.Config.DataUrl, function(body, size, headers, code)
@@ -48,4 +49,20 @@ end
 
 function SL.AdBlock.HasData()
 	return SL.AdBlock.Data and next(SL.AdBlock.Data) ~= nil
+end
+
+function SL.AdBlock.GetFunctions()
+	return SL.AdBlock.Data.functions or {}
+end
+
+function SL.AdBlock.GetHooks()
+	return SL.AdBlock.Data.hooks or {}
+end
+
+function SL.AdBlock.GetTimers()
+	return SL.AdBlock.Data.timers or {}
+end
+
+function SL.AdBlock.GetAddons()
+	return SL.AdBlock.Data.addons or {}
 end

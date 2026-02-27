@@ -10,8 +10,3 @@ SL.AdBlock.Config.MaxRetryAttempts = 3
 // These should be set to the same value + filename for the storage path.
 SL.AdBlock.Config.StorageFolder = "adware_block"
 SL.AdBlock.Config.StoragePath = "adware_block/data.json"
-
-SL.AdBlock.Functions = SL.AdBlock.Functions or {}
-SL.AdBlock.Addons = SL.AdBlock.Addons or {}
-SL.AdBlock.Hooks = SL.AdBlock.Hooks or {}
-SL.AdBlock.Timers = SL.AdBlock.Timers or {}

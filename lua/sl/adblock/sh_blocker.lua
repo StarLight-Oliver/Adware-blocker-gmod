@@ -91,8 +91,22 @@ function SL.AdBlock.FindAddonFiles(addonTitle)
 	return files
 end
 
+local function ApplyFunctionBlockingToAddonfiles(blockedRealms, addonFiles, functions)
+	for realm, blockedFuncs in pairs(blockedRealms) do
+		functions[realm] = functions[realm] or {}
+
+		for _, funcName in pairs(blockedFuncs) do
+			functions[realm][funcName] = functions[realm][funcName] or {}
+
+			for _, fileName in ipairs(addonFiles) do
+				functions[realm][funcName][fileName] = true
+			end
+		end
+	end
+end
+
 function SL.AdBlock.ScanAddons(silent)
-	local addons = SL.AdBlock.Data.addons or {}
+	local addons = SL.AdBlock.GetAddons()
 	if not next(addons) then return end
 
 	local functions = SL.AdBlock.GetFunctions()
@@ -104,17 +118,7 @@ function SL.AdBlock.ScanAddons(silent)
 		local addonFiles = SL.AdBlock.FindAddonFiles(v.title)
 		local blockedRealms = addons[wsid]
 
-		for realm, blockedFuncs in pairs(blockedRealms) do
-			SL.AdBlock.Functions[realm] = SL.AdBlock.Functions[realm] or {}
-
-			for _, funcName in pairs(blockedFuncs) do
-				SL.AdBlock.Functions[realm][funcName] = SL.AdBlock.Functions[realm][funcName] or {}
-
-				for _, fileName in ipairs(addonFiles) do
-					SL.AdBlock.Functions[realm][funcName][fileName] = true
-				end
-			end
-		end
+		ApplyFunctionBlockingToAddonfiles(blockedRealms, addonFiles, functions)
 
 		if not silent then
 			SL.AdBlock.Logger.Info("Blocked addon (" .. v.title .. ") from running functions")
@@ -125,16 +129,16 @@ end
 function SL.AdBlock.ApplyOverrides()
 	SL.AdBlock.ScanAddons()
 
-	local functionsToOverride = SL.AdBlock.Functions
-	if not functionsToOverride then return end
+	local functions = SL.AdBlock.GetFunctions()
+	if not functions then return end
 
 	local realm = SERVER and "sv" or "cl"
 
-	for funcName, blockedFiles in pairs(functionsToOverride[realm] or {}) do
+	for funcName, blockedFiles in pairs(functions[realm] or {}) do
 		SL.AdBlock.OverrideFunction(funcName, blockedFiles)
 	end
 
-	for funcName, blockedFiles in pairs(functionsToOverride["sh"] or {}) do
+	for funcName, blockedFiles in pairs(functions["sh"] or {}) do
 		SL.AdBlock.OverrideFunction(funcName, blockedFiles)
 	end
 end
