@@ -1,5 +1,8 @@
 SL.AdBlock.Initialized = SL.AdBlock.Initialized or false
 
+---Initializes the AdBlock system
+---Loads stored blacklist data, applies function overrides, removes blocked hooks/timers,
+---and fetches fresh blacklist data from the remote server
 function SL.AdBlock.Initialize()
 	if SL.AdBlock.Initialized then return end
 	SL.AdBlock.Initialized = true

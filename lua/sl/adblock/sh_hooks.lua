@@ -1,6 +1,9 @@
+---@class SL.AdBlock.Hooks
+
 SL = SL or {}
 SL.AdBlock = SL.AdBlock or {}
 
+---Removes all timers listed in the blacklist
 function SL.AdBlock.RemoveTimers()
 	local timers = SL.AdBlock.GetTimers()
 
@@ -11,6 +14,8 @@ function SL.AdBlock.RemoveTimers()
 	end
 end
 
+---Removes all hooks listed in the blacklist, with retry logic
+---@param retryCount number? Current retry attempt number
 function SL.AdBlock.RemoveHooks(retryCount)
 	if retryCount and retryCount >= SL.AdBlock.Config.MaxRetryAttempts then
 		return

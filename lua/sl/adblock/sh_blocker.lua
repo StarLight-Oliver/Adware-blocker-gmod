@@ -1,6 +1,12 @@
+---@class SL.AdBlock.Blocker
+
 SL = SL or {}
 SL.AdBlock = SL.AdBlock or {}
 
+---Extracts a specific stack frame from a traceback
+---@param stackTrace string The debug traceback string
+---@param depthOverride number? Optional depth override (default: 3)
+---@return string? The extracted file path
 local function extractStackFrame(stackTrace, depthOverride)
 	depthOverride = depthOverride or 3
 
@@ -25,10 +31,16 @@ local function extractStackFrame(stackTrace, depthOverride)
 	return frame
 end
 
+---Extracts the calling file from the current stack trace
+---@param depthOverride number? Optional depth override
+---@return string? The calling file path
 function SL.AdBlock.ExtractCallingFile(depthOverride)
 	return extractStackFrame(debug.traceback(), depthOverride)
 end
 
+---Overrides a global function to block calls from specific files
+---@param funcName string The name of the function to override (supports dot notation like "chat.AddText")
+---@param blockedFiles table<string, boolean> Map of blocked file paths to true
 function SL.AdBlock.OverrideFunction(funcName, blockedFiles)
 	SL.AdBlock.Logger.Info("Overriding function:", funcName)
 
@@ -65,6 +77,9 @@ function SL.AdBlock.OverrideFunction(funcName, blockedFiles)
 	reference[name] = newFunc
 end
 
+---Scans an addon's files recursively
+---@param addonTitle string The title of the addon to scan
+---@return string[] Array of file paths within the addon
 function SL.AdBlock.FindAddonFiles(addonTitle)
 	local rootDir = "lua"
 	local files = {}
@@ -86,6 +101,10 @@ function SL.AdBlock.FindAddonFiles(addonTitle)
 	return files
 end
 
+---Applies function blocking rules to addon files
+---@param blockedRealms table<string, table> Blocked functions by realm
+---@param addonFiles string[] Array of addon file paths
+---@param functions table The functions table to populate
 local function ApplyFunctionBlockingToAddonfiles(blockedRealms, addonFiles, functions)
 	for realm, blockedFuncs in pairs(blockedRealms) do
 		functions[realm] = functions[realm] or {}
@@ -100,6 +119,8 @@ local function ApplyFunctionBlockingToAddonfiles(blockedRealms, addonFiles, func
 	end
 end
 
+---Scans installed addons and builds blocked function mappings
+---@param silent boolean? If true, suppresses log output
 function SL.AdBlock.ScanAddons(silent)
 	local addons = SL.AdBlock.GetAddons()
 	if not next(addons) then return end
@@ -121,6 +142,7 @@ function SL.AdBlock.ScanAddons(silent)
 	end
 end
 
+---Applies all function overrides based on blacklist data
 function SL.AdBlock.ApplyOverrides()
 	SL.AdBlock.ScanAddons()
 
